@@ -59,12 +59,12 @@ class Evaluate:
       True if the expression is valid, else returns False.
     """
     count = 0
-      for i in expression:
-        if i.isdigit():
-          count += 1
-          else:
-            count -= 1
-      return count == 1
+    for i in expression:
+      if i.isdigit():
+        count += 1
+        else:
+          count -= 1
+    return count == 1
 
 
   def evaluate_postfix_expression(self, expression):
