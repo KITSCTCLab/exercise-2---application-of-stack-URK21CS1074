@@ -64,6 +64,8 @@ class Evaluate:
         count += 1
       else:
         count -= 1
+      if count<1:
+        return False
     return count == 1
 
 
