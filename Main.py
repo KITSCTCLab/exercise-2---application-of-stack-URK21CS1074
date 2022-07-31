@@ -62,8 +62,10 @@ class Evaluate:
     for i in expression:
       if i.isdigit():
         count += 1
-      else:
+      elif '+' or '-' or '*' or '/' or '(':
         count -= 1
+      else:
+        return False
       if count<1:
         return False
     return count == 1
