@@ -26,7 +26,7 @@ class Evaluate:
     Returns:
       True if it is empty, else returns False.
     """
-      return self.top == -1
+    return self.top == -1
 
 
   def pop(self):
