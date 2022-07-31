@@ -62,8 +62,8 @@ class Evaluate:
     for i in expression:
       if i.isdigit():
         count += 1
-        else:
-          count -= 1
+      else:
+        count -= 1
     return count == 1
 
 
