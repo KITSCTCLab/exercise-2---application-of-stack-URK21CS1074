@@ -26,7 +26,11 @@ class Evaluate:
     Returns:
       True if it is empty, else returns False.
     """
-    return self.top == -1
+    # Write your code here
+    if self.top == -1:
+      return True
+    else:
+      return False
 
 
   def pop(self):
@@ -35,9 +39,9 @@ class Evaluate:
     Returns:
       The data which is popped out if the stack is not empty.
     """
+    # Write your code here
     if not self.isEmpty():
-      self.top -= 1
-      return self.stack.pop()
+      self.stack.pop()
 
 
   def push(self, operand):
@@ -46,7 +50,8 @@ class Evaluate:
     Arguments:
       operand: The operand to be pushed.
     """
-    if self.top < self.size_of_stack:
+    # Write your code here
+    if self.top != self.size_of_stack - 1:
       self.stack.append(operand)
 
 
@@ -58,17 +63,18 @@ class Evaluate:
     Returns:
       True if the expression is valid, else returns False.
     """
-    count = 0
-    for i in expression:
-      if i.isdigit():
-        count += 1
-      elif '+' or '-' or '*' or '/' or '(' or ')':
-        count -= 1
+    # Write your code here
+    nums = 0
+    ops = 0
+    for element in expression:
+      if element.isnumeric():
+        nums = nums + 1
       else:
-        return False
-      if count<1:
-        return False
-    return count == 1
+        ops = ops + 1
+    if ops == nums - 1:
+      return True
+    else:
+      return False
 
 
   def evaluate_postfix_expression(self, expression):
@@ -79,17 +85,28 @@ class Evaluate:
     Returns:
       The result of evaluated postfix expression.
     """
+    # Write your code here
+    stack = []
     for i in expression:
-      if i.isdigit():
-        self.top += 1
-        self.push(i)
-      else:
-        self.top -= 1
-        val1 = self.pop()
-        val2 = self.pop()
-        self.push(str(eval(val2 + i + val1)))
-    return self.pop()
-
+      if i.isnumeric():
+        stack.append(int(i))
+      if len(stack) >= 2:
+        if i == '+':
+          stack[-2] = stack[-2] + stack[-1]
+          stack.pop()
+        elif i == '-':
+          stack[-2] = stack[-2] - stack[-1]
+          stack.pop()
+        elif i == '*':
+          stack[-2] = stack[-2] * stack[-1]
+          stack.pop()
+        elif i == '/':
+          stack[-2] = stack[-2] / stack[-1]
+          stack.pop()
+        elif i == '^':
+          stack[-2] = stack[-2] ^ stack[-1]
+          stack.pop()
+    return int(stack[-1])
 
 # Do not change the following code
 postfix_expression = input()  # Read postfix expression
